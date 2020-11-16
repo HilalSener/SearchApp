@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SearchApp.Views.SearchPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar x:Name="searchBar" Placeholder="Search..." 
+                       PlaceholderColor="DeepSkyBlue" TextColor="DeepSkyBlue" 
+                       SearchCommand="{Binding SearchCommand}"
+                       SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+            <CollectionView 
+                        ItemsSource="{Binding Products}"
+                        RemainingItemsThreshold="5"
+                        RemainingItemsThresholdReachedCommand="{Binding LoadMoreDataCommand}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" BackgroundColor="White" Padding="20">
+                            <Image Source="{Binding ProductImage}" Aspect="AspectFit" HeightRequest="200"/>
+                            <Label Text="{Binding ProductName}" LineBreakMode="WordWrap" TextColor="DeepSkyBlue" FontAttributes="Bold" FontSize="20"/>
+                            <Label Text="{Binding SalesPriceIncVat}" TextColor="Black" FontAttributes="Bold" FontSize="20"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
